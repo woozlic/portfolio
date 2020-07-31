@@ -5,12 +5,11 @@
     <title>aaaaa)</title>
 </head>
 <body>
-<h1>1st project</h1>
-<p>1st project is the site portfol.io</p>
-<a href = "#">img1</a>
-
-<h1>2nd project</h1>
-<p>2nd project is the web parser</p>
-<a href = "#">img2</a>
+{% for post in posts %}
+    <h1>{{ post.title }}</h1>
+    <h4>Author: {{ post.author }}</h4>
+    <p><b>{{ post.text|linebreaksbr }}</b></p>
+    <p>published date: {{ post.published_date }}</p>
+{% endfor %}
 </body>
 </html>
