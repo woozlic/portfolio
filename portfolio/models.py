@@ -10,13 +10,6 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
-    def get_short_text(self):
-        try:
-            short_text = (self.text[:100]+'...')
-        except:
-            short_text = self.text
-        return short_text
-
     def publish(self):
         self.published_date = timezone.now()
         self.save()
