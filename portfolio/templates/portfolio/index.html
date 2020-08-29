@@ -1,0 +1,45 @@
+{% extends 'portfolio/base.html' %}
+{% block top %}
+<section class="jumbotron text-center">
+    <div class="container">
+      <h1>Dema's portfolio</h1>
+      <p class="lead text-muted">This website was created using Django, MySQL and Bootstrap</p>
+      <p>
+        <a href="#" class="btn btn-primary my-2">Write me to hire</a>
+        <a href="{% url 'main:post_detail'  random_post.pk %}" class="btn btn-secondary my-2">Look at random project</a>
+      </p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+                <h3><a href = '{% url "main:post_detail" post.pk %} '>{{ post.title }}</a></h3>
+              <p class="card-text">{{ post.get_short_text }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">{{post.published_date}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    <div class = 'container'>
+<ul class="list-unstyled">
+<li>
+    {% for page in pages %}
+
+        <a href ="#">{{ page }}</a>
+
+    {% endfor %}
+</li>
+</ul>
+    </div>
+{% endblock %}

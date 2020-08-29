@@ -1,0 +1,15 @@
+{% extends "portfolio/base.html" %}
+{% block content %}
+    <div class="col-sm-8 col-md-7 py-4">
+    <form action="{% url 'polls:vote' poll.id %}" method="post">
+    {% csrf_token %}
+        <h4>{{ poll.question_text }}</h4>
+        <p>{{ poll.pub_date }}</p>
+        {% for choice in poll.choice_set.all %}
+            <input type = "radio" name = "choice" id = "choice{{ forloop.counter }}" value = {{ choice.id }}>
+            <label for ="choice">{{ forloop.counter }}. {{ choice.choice_text }} </label><br>
+        {% endfor %}
+    <input type="submit" value="vote">
+    </form>
+    </div>
+{% endblock %}
